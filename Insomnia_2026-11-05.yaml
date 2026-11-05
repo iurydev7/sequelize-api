@@ -1,0 +1,369 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: GT4-TARDE
+meta:
+  id: wrk_f3fb56907a6f4923a589b3b3438293d8
+  created: 1793031989947
+  modified: 1793031989947
+  description: ""
+collection:
+  - name: express-api
+    meta:
+      id: fld_2bcc73f3cb154bb8b037d1830d11d648
+      created: 1793303330946
+      modified: 1793732464495
+      sortKey: -1793303330946
+      description: ""
+    children:
+      - name: auth
+        meta:
+          id: fld_55696f58357d49b990189a3d3ad2dd2d
+          created: 1793303884659
+          modified: 1793732464496
+          sortKey: -1793303884659
+          description: ""
+        children:
+          - url: http://localhost:3000/api/auth/login
+            name: login
+            meta:
+              id: req_ffa25b55f5054e7f90574864f56b9325
+              created: 1793303335957
+              modified: 1793732382177
+              isPrivate: false
+              description: ""
+              sortKey: -1793303894448
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"email": "admin@gtstore.com",
+                	"password": "Senh@123"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            scripts:
+              afterResponse: |-
+                const response = insomnia.response.json();
+                insomnia.environment.set("token", response.token);
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.base_url }}/api/auth/register"
+            name: register
+            meta:
+              id: req_82ef456a079148c4a6b255ce65e12553
+              created: 1793303356460
+              modified: 1793731477158
+              isPrivate: false
+              description: ""
+              sortKey: -1793303894548
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "markin",
+                	"email": "relampagomarkin@gmail.com",
+                	"password": "test@1234"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: users
+        meta:
+          id: fld_71c460d7165741ac9fc627111a440de7
+          created: 1793731512144
+          modified: 1793731568603
+          sortKey: -1793303884759
+          description: ""
+        children:
+          - url: "{{ _.base_url }}/api/users"
+            name: getUsers
+            meta:
+              id: req_ddbf7ac2f5154b95bb3599d7ff8164a1
+              created: 1793731535901
+              modified: 1793734727452
+              isPrivate: false
+              description: ""
+              sortKey: -1793731535901
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.base_url }}/api/users"
+            name: getUsersById
+            meta:
+              id: req_3ebb643070844781817380465761fc62
+              created: 1793733628108
+              modified: 1793733663602
+              isPrivate: false
+              description: ""
+              sortKey: -1793517715224.5
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: endereço
+        meta:
+          id: fld_8ee7af6159334179999676a699616cd2
+          created: 1793733688027
+          modified: 1793733688027
+          sortKey: -1793733688027
+          description: ""
+        children:
+          - url: "{{ _.base_url }}/api/addresses/"
+            name: criarEndereço
+            meta:
+              id: req_a99107730fcf4c5281241b6ab08552eb
+              created: 1793733695440
+              modified: 1793734396122
+              isPrivate: false
+              description: ""
+              sortKey: -1793733695440
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"street":"Rua das flores",
+                	"neighborhood":"Pici", 
+                	"number": "55",
+                	"city": "Fortal",	
+                	"state": "Cearamor",
+                	"zipCode": "60160-120"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: products
+        meta:
+          id: fld_28f7113331524bcda0d346058a454c7d
+          created: 1793735208576
+          modified: 1793735208576
+          sortKey: -1793735208576
+          description: ""
+        children:
+          - url: "{{ _.base_url }}/api/products"
+            name: cadastrarProdutos
+            meta:
+              id: req_b184993a079d457d813d9b433ab1197f
+              created: 1793735212498
+              modified: 1793735504361
+              isPrivate: false
+              description: ""
+              sortKey: -1793735212498
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                	"name": "tshirt nike jordan",
+                	"description": "Cor preto GG",
+                	"image_url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSHOHw8fnJqu5HmVD75XoFZ8QdSlHMdy2X4XBbtzYYRsaehgECc3cXr6Pe9vw4W7nUDQmXnZS1Qm36rFtwkXz3GJothBEDrliUsZs7CYGyODBuAHd3KHg_k",
+                	"price": 349.50,
+                	"stock": 50
+
+                	
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.base_url }}/api/products"
+            name: getProducts
+            meta:
+              id: req_b88dd7de562b4fb7896b798d1cff194b
+              created: 1793735525467
+              modified: 1793735556379
+              isPrivate: false
+              description: ""
+              sortKey: -1793735525467
+            method: GET
+            authentication:
+              type: bearer
+              token: "{{ _.token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: sequelizie-api
+    meta:
+      id: fld_6c23e949fea24f94ae358f44b3a65ac4
+      created: 1793821819495
+      modified: 1793821819495
+      sortKey: -1793821819495
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/usuarios"
+        name: getAllUsers
+        meta:
+          id: req_f2a755cffbe74bb8acb79de23476101c
+          created: 1793821827242
+          modified: 1793904026191
+          isPrivate: false
+          description: ""
+          sortKey: -1793821827242
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/usuarios"
+        name: createUser
+        meta:
+          id: req_1e84b5fe50f04936a3a0edc101140fad
+          created: 1793903850920
+          modified: 1793906051750
+          isPrivate: false
+          description: ""
+          sortKey: -1793903850920
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "iury.teixeiraa@gmail.com",
+            	"senha": "Senh@123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/usuarios/solicitar"
+        name: solicitar
+        meta:
+          id: req_7526d984b5e143c2bdca4c4f6bbebc40
+          created: 1793906033426
+          modified: 1793906150256
+          isPrivate: false
+          description: ""
+          sortKey: -1793862839081
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "iury.teixeiraa@gmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/usuarios/verificar"
+        name: verificar
+        meta:
+          id: req_bd60573f709b42458aaa0ec646b9c466
+          created: 1793906666695
+          modified: 1793907553443
+          isPrivate: false
+          description: ""
+          sortKey: -1793842333161.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "iury.teixeiraa@gmail.com",
+            	"codigo": "663687"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ec3309cc68f74119a02e6f92d3a865c21c356312
+    created: 1793031989950
+    modified: 1793732464484
+environments:
+  name: Base Environment
+  meta:
+    id: env_ec3309cc68f74119a02e6f92d3a865c21c356312
+    created: 1793031989948
+    modified: 1793732464493
+    isPrivate: false
+  data:
+    base_url: http://localhost:3000
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODkzOWU0ZC00Yzg0LTQ2YzEtOGZiNy1iNmYwZTkzMzE0N2MiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTM3MzI0NjMsImV4cCI6MTc5MzgxODg2M30.0bq1NCGZjO0nglP2WqE_n5z520jw5gBHpo94wHS28sc

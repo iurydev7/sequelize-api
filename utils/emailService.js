@@ -30,3 +30,7 @@ const sendVerification = async (email, verificationCode) => {
         return false;
     }
 }
+
+module.exports = {
+    sendVerification
+}
